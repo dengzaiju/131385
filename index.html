@@ -10,27 +10,28 @@
     <!-- 移除 Tailwind CSS CDN -->
     <style type="text/css">
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: #F2F2F7;
+            font-family: 'Gothic', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
             margin: 0;
             padding: 0;
             min-height: 100vh;
+            background-image: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.7)), url('https://i.imgur.com/XJBwZfs.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
         }
         
-        /* Apple-inspired color palette */
+        /* Dark theme color palette */
         :root {
-            --apple-blue: #007AFF;
-            --apple-indigo: #5856D6;
-            --apple-purple: #AF52DE;
-            --apple-pink: #FF2D55;
-            --apple-red: #FF3B30;
-            --apple-orange: #FF9500;
-            --apple-yellow: #FFCC00;
-            --apple-green: #34C759;
-            --apple-teal: #5AC8FA;
-            --apple-gray-light: #F2F2F7;
-            --apple-gray-medium: #E5E5EA;
-            --apple-gray-dark: #8E8E93;
+            --primary: #4a0000;
+            --primary-hover: #6a0000;
+            --accent: #ffd700;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --bg-dark: #1a1a1a;
+            --bg-card: rgba(20, 20, 20, 0.9);
+            --border-color: #333;
         }
         
         .container {
@@ -41,8 +42,9 @@
         
         /* Header styles */
         header {
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: var(--bg-dark);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            border-bottom: 1px solid var(--border-color);
         }
         
         nav {
@@ -53,10 +55,11 @@
         }
         
         .nav-brand {
-            color: var(--apple-blue);
-            font-size: 1.25rem;
+            color: var(--accent);
+            font-size: 1.5rem;
             font-weight: bold;
             text-decoration: none;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
         }
         
         .nav-links {
@@ -65,13 +68,13 @@
         }
         
         .nav-link {
-            color: var(--apple-gray-dark);
+            color: var(--text-secondary);
             text-decoration: none;
             transition: color 0.3s;
         }
         
         .nav-link:hover {
-            color: var(--apple-blue);
+            color: var(--accent);
         }
         
         /* Main content */
@@ -85,36 +88,33 @@
         }
         
         .hero h1 {
-            font-size: 3rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            color: var(--apple-indigo);
+            color: var(--accent);
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+            font-size: 3.5rem;
         }
         
         .hero p {
+            color: var(--text-secondary);
             font-size: 1.25rem;
-            color: var(--apple-gray-dark);
-            max-width: 42rem;
-            margin: 0 auto 2rem;
         }
         
         .btn {
-            display: inline-block;
+            background: var(--primary);
+            color: var(--accent);
+            border: 1px solid var(--accent);
             padding: 0.75rem 2rem;
-            background: var(--apple-blue);
-            color: white;
-            text-decoration: none;
-            border-radius: 0.5rem;
-            font-weight: 600;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             transition: all 0.3s;
-            cursor: pointer;
-            border: none;
-            font-size: 1rem;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 0 20px rgba(74, 0, 0, 0.5);
         }
         
         .btn:hover {
-            background: #0056CC;
+            background: var(--primary-hover);
             transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(74, 0, 0, 0.7);
         }
         
         /* Game container */
@@ -123,10 +123,8 @@
         }
         
         .section-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 1.5rem;
-            color: var(--apple-purple);
+            color: var(--accent);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
         }
         
         .game-container {
@@ -136,9 +134,9 @@
             margin: 0 auto;
             background: black;
             border-radius: 0.5rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 0 40px rgba(0,0,0,0.8);
+            border: 1px solid var(--border-color);
             overflow: hidden;
-            position: relative;
         }
         
         .game-iframe {
@@ -148,7 +146,6 @@
         }
         
         .game-placeholder {
-            display: none;
             position: absolute;
             top: 0;
             left: 0;
@@ -163,6 +160,10 @@
             text-align: center;
         }
         
+        .game-placeholder.hidden {
+            display: none;
+        }
+        
         .game-placeholder h3 {
             font-size: 2rem;
             margin-bottom: 1rem;
@@ -175,9 +176,11 @@
         
         /* Card styles */
         .card {
-            background: white;
+            background: var(--bg-card);
             border-radius: 0.5rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
             padding: 1.5rem;
             margin-bottom: 2rem;
         }
@@ -208,16 +211,17 @@
         }
         
         .feature-icon.check {
-            color: var(--apple-green);
+            color: var(--accent);
         }
         
         .feature-icon.bullet {
-            color: var(--apple-orange);
+            color: var(--primary);
         }
         
         /* Footer */
         footer {
-            background: var(--apple-indigo);
+            background: var(--bg-dark);
+            border-top: 1px solid var(--border-color);
             color: white;
             padding: 2rem 0;
         }
@@ -255,7 +259,7 @@
         }
         
         .footer-links a:hover {
-            color: var(--apple-yellow);
+            color: var(--accent);
         }
         
         /* Responsive design */
@@ -346,11 +350,6 @@
         <section id="play" class="game-section fade-in">
             <h2 class="section-title">Play Online</h2>
             <div class="game-container">
-                <div id="game-placeholder" class="game-placeholder">
-                    <h3>🏚️ Illumination of Mansion</h3>
-                    <p>Click the button below to start your mysterious adventure!</p>
-                    <button onclick="loadGame()" class="btn">Start Game</button>
-                </div>
                 <iframe id="game-iframe" class="game-iframe" style="display: none;" allowfullscreen></iframe>
             </div>
         </section>
@@ -497,39 +496,15 @@
         
         // Game loading functions
         function startGame() {
-            // Scroll to game section
+            // 滚动到游戏区域
             document.getElementById('play').scrollIntoView({
                 behavior: 'smooth'
             });
             
-            // Show game placeholder if iframe is not loaded
-            setTimeout(() => {
-                const placeholder = document.getElementById('game-placeholder');
-                if (placeholder && placeholder.style.display !== 'none') {
-                    placeholder.style.display = 'flex';
-                }
-            }, 1000);
-        }
-        
-        function loadGame() {
+            // 直接显示游戏iframe
             const iframe = document.getElementById('game-iframe');
-            const placeholder = document.getElementById('game-placeholder');
-            
-            // Hide placeholder and show iframe
-            placeholder.style.display = 'none';
             iframe.style.display = 'block';
-            
-            // Load the game
             iframe.src = 'https://itch.io/embed/3560411';
-            
-            // Show loading message
-            placeholder.innerHTML = '<h3>🎮 Loading Game...</h3><p>Please wait while the game loads.</p>';
-            placeholder.style.display = 'flex';
-            
-            // Hide loading message after iframe loads
-            iframe.onload = function() {
-                placeholder.style.display = 'none';
-            };
         }
     </script>
 </body>
